@@ -1362,6 +1362,7 @@ pub fn rustdesk_interval(i: Interval) -> ThrottledInterval {
 
 pub fn load_custom_client() {
     let data = "{\
+        \"app-name\": \"maxViewer\",
         \"override-settings\": {
             \"show-scam-warning\": \"N\",
             \"api-server\": \"http://maxviewer.maximatech.com.br:21114/\",
