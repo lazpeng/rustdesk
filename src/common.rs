@@ -1361,26 +1361,7 @@ pub fn rustdesk_interval(i: Interval) -> ThrottledInterval {
 }
 
 pub fn load_custom_client() {
-    #[cfg(debug_assertions)]
-    if let Ok(data) = std::fs::read_to_string("./custom.txt") {
-        read_custom_client(data.trim());
-        return;
-    }
-    let Some(path) = std::env::current_exe().map_or(None, |x| x.parent().map(|x| x.to_path_buf()))
-    else {
-        return;
-    };
-    #[cfg(target_os = "macos")]
-    let path = path.join("../Resources");
-    let path = path.join("custom.txt");
-    if path.is_file() {
-        let Ok(data) = std::fs::read_to_string(&path) else {
-            log::error!("Failed to read custom client config");
-            return;
-        };
-        read_custom_client(&data.trim());
-    } else {  
-        let data = "{\
+    let data = "{\
         \"override-settings\": {
             \"show-scam-warning\": \"N\",
             \"api-server\": \"http://maxviewer.maximatech.com.br:21114/\",
@@ -1389,8 +1370,7 @@ pub fn load_custom_client() {
             \"direct-server\": \"maxviewer.maximatech.com.br\",
         }
         }";
-        read_custom_client(data);
-    }
+    read_custom_client(data);
 }
 
 fn read_custom_client_advanced_settings(
