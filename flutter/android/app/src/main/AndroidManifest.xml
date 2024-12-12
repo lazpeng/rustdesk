@@ -23,10 +23,10 @@
     </queries>
 
     <application
-        android:icon="@mipmap/ic_launcher"
-        android:label="RustDesk"
+        android:icon="@mipmap/ic_launcher_new"
+        android:label="maxViewer"
         android:requestLegacyExternalStorage="true"
-        android:roundIcon="@mipmap/ic_launcher"
+        android:roundIcon="@mipmap/ic_launcher_new"
         android:supportsRtl="true">
 
         <receiver
