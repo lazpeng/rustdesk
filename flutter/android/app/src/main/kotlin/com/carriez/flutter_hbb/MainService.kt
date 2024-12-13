@@ -551,16 +551,18 @@ class MainService : Service() {
                         stopCapture()
                     }
                 }
+
+                val handler = Handler(Looper.getMainLooper())
                 mp.registerCallback(object: MediaProjection.Callback() {
                     override fun onStop() {
                         super.onStop()
                         stopCapture()
                     }
-                }, null)
+                }, handler)
                 virtualDisplay = mp.createVirtualDisplay(
                     "RustDeskVD",
                     SCREEN_INFO.width, SCREEN_INFO.height, SCREEN_INFO.dpi, VIRTUAL_DISPLAY_FLAG_AUTO_MIRROR,
-                    s, callback, null
+                    s, callback, handler
                 )
             }
         } catch (e: SecurityException) {
