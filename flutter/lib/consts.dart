@@ -315,6 +315,7 @@ const kActionAccessibilitySettings = "android.settings.ACCESSIBILITY_SETTINGS";
 
 const kRecordAudio = "android.permission.RECORD_AUDIO";
 const kManageExternalStorage = "android.permission.MANAGE_EXTERNAL_STORAGE";
+const kMediaProjectionPermission = "android.permission.FOREGROUND_SERVICE_MEDIA_PROJECTION";
 const kRequestIgnoreBatteryOptimizations =
     "android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS";
 const kSystemAlertWindow = "android.permission.SYSTEM_ALERT_WINDOW";

@@ -407,6 +407,9 @@ class ServerModel with ChangeNotifier {
       if (!await AndroidPermissionManager.check(kManageExternalStorage)) {
         await AndroidPermissionManager.request(kManageExternalStorage);
       }
+      if (!await AndroidPermissionManager.check(kMediaProjectionPermission)) {
+        await AndroidPermissionManager.request(kMediaProjectionPermission);
+      }
       final res = await parent.target?.dialogManager
           .show<bool>((setState, close, context) {
         submit() => close(true);
