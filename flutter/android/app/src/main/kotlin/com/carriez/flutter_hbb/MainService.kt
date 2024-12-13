@@ -246,7 +246,9 @@ class MainService : Service() {
         val configPath = prefs.getString(KEY_APP_DIR_CONFIG_PATH, "") ?: ""
         FFI.startServer(configPath, "")
 
-        createForegroundNotification()
+        if (Build.VERSION.SDK_INT < 34) {
+            createForegroundNotification()
+        }
     }
 
     override fun onDestroy() {
@@ -552,17 +554,16 @@ class MainService : Service() {
                     }
                 }
 
-                val handler = Handler(Looper.getMainLooper())
                 mp.registerCallback(object: MediaProjection.Callback() {
                     override fun onStop() {
                         super.onStop()
                         stopCapture()
                     }
-                }, handler)
+                }, serviceHandler)
                 virtualDisplay = mp.createVirtualDisplay(
                     "RustDeskVD",
                     SCREEN_INFO.width, SCREEN_INFO.height, SCREEN_INFO.dpi, VIRTUAL_DISPLAY_FLAG_AUTO_MIRROR,
-                    s, callback, handler
+                    s, callback, serviceHandler
                 )
             }
         } catch (e: SecurityException) {
