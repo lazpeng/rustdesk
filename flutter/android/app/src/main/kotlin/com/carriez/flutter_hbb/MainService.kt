@@ -536,7 +536,7 @@ class MainService : Service() {
             virtualDisplay?.let {
                 it.resize(SCREEN_INFO.width, SCREEN_INFO.height, SCREEN_INFO.dpi)
                 it.setSurface(s)
-            } ?: let {⁠                 
+            } ?: let {
                 val callback = object : VirtualDisplay.Callback() {
                     override fun onPaused() {
                         super.onPaused()
