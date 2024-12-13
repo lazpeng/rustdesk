@@ -17,6 +17,7 @@ import android.app.PendingIntent.FLAG_UPDATE_CURRENT
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.content.pm.ServiceInfo
 import android.content.res.Configuration
 import android.content.res.Configuration.ORIENTATION_LANDSCAPE
 import android.graphics.Color
@@ -550,6 +551,12 @@ class MainService : Service() {
                         stopCapture()
                     }
                 }
+                mp.registerCallback(object: MediaProjection.Callback() {
+                    override fun onStop() {
+                        super.onStop()
+                        stopCapture()
+                    }
+                }, null)
                 virtualDisplay = mp.createVirtualDisplay(
                     "RustDeskVD",
                     SCREEN_INFO.width, SCREEN_INFO.height, SCREEN_INFO.dpi, VIRTUAL_DISPLAY_FLAG_AUTO_MIRROR,
@@ -653,7 +660,11 @@ class MainService : Service() {
             .setColor(ContextCompat.getColor(this, R.color.primary))
             .setWhen(System.currentTimeMillis())
             .build()
-        startForeground(DEFAULT_NOTIFY_ID, notification)
+        if (Build.VERSION.SDK_INT >= 34) {
+            startForeground(DEFAULT_NOTIFY_ID, notification, ServiceInfo.FOREGROUND_SERVICE_TYPE_MEDIA_PROJECTION)
+        } else {
+            startForeground(DEFAULT_NOTIFY_ID, notification)
+        }
     }
 
     private fun loginRequestNotification(
