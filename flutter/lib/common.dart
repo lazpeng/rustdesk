@@ -3357,7 +3357,7 @@ Widget loadPowered(BuildContext context) {
 // max 300 x 60
 Widget loadLogo() {
   return FutureBuilder<ByteData>(
-      future: rootBundle.load('assets/logo.png'),
+      future: rootBundle.load('assets/logo_override.png'),
       builder: (BuildContext context, AsyncSnapshot<ByteData> snapshot) {
         if (snapshot.hasData) {
           final image = Image.asset(
