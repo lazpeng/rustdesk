@@ -1368,9 +1368,16 @@ pub fn load_custom_client() {
             \"api-server\": \"http://maxviewer.maximatech.com.br:21114/\",
             \"custom-rendezvous-server\": \"maxviewer.maximatech.com.br\",
             \"key\": \"sTbpuncgIt6Uh0cmHquHMgNVCorP4y4t00nJmPhrxfE=\",
-            \"direct-server\": \"maxviewer.maximatech.com.br\"
+            \"direct-server\": \"maxviewer.maximatech.com.br\",
+            \"allow-remove-wallpaper\": \"Y\",
+            \"access-mode\": \"full\",
+            \"approve-mode\": \"password-click\",
+            \"lang\": \"ptbr\",
+            \"enable-abr\": \"Y\",
+            \"show-remote-cursor\": \"Y\",
+            \"enable-file-copy-paste\": \"Y\"
         }
-        }";
+    }";
     read_custom_client(data);
 }
 
